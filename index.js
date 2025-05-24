@@ -33,7 +33,7 @@ app.post('/send-receipt', async (req, res) => {
       from: 'whatsapp:+14155238886',
       to: `whatsapp:${receipt.phone}`,
       body: 'Here is your PDF document',
-      mediaUrl: ['https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'],
+      mediaUrl: ['https://pmftzyqhbhzndksxxqpx.supabase.co/storage/v1/object/public/receipts//Receipt-8c7cb87e-1fc9-4e47-aa60-0faa0d52d950.pdf'],
     });
     res.status(200).json({ success: true, sid: msg.sid });
   } catch (err) {
