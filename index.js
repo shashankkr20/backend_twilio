@@ -27,12 +27,12 @@ app.post('/send', async (req, res) => {
 });
 app.post('/send-receipt', async (req, res) => {
   const {  receipt } = req.body;
-  console.log(receipt.phone);
+//   console.log(receipt.phone,receipt);
   try {
     const msg = await client.messages.create({
       from: 'whatsapp:+14155238886',
       to: `whatsapp:${receipt.phone}`,
-      body: 'Here is your PDF document',
+      body: `Dear ${receipt.customer}, Here is your invoice from Maniratnam Jewellers Patna +91 8804269056`,
       mediaUrl: ['https://pmftzyqhbhzndksxxqpx.supabase.co/storage/v1/object/public/receipts/Receipt-8c7cb87e-1fc9-4e47-aa60-0faa0d52d950.pdf'],
     });
     res.status(200).json({ success: true, sid: msg.sid });
