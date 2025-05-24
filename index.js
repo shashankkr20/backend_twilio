@@ -25,5 +25,19 @@ app.post('/send', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
+app.post('/send-receipt', async (req, res) => {
+  const {  receipt } = req.body;
+  console.log(receipt.phone);
+  try {
+    const msg = await client.messages.create({
+      from: 'whatsapp:+14155238886',
+      to: `whatsapp:${receipt.phone}`,
+      body: 'Here is your PDF document',
+      mediaUrl: ['https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'],
+    });
+    res.status(200).json({ success: true, sid: msg.sid });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 app.listen(3000, () => console.log('Backend running on port 3000'));
